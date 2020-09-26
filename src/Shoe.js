@@ -3,7 +3,7 @@ import { v4 } from "uuid";
 const Shoe = (props) => {
   const [shoes, setShoes] = useState(null);
 
-  let shoeDetailUrl = "http://127.0.0.1:8001/api/shoe/shoe_detail/";
+  let shoeDetailUrl = "http://127.0.0.1:8000/api/shoe/shoe_detail/";
 
   const dispatcher = useCallback(
     (output) => setShoes(() => [...output, output]),
@@ -22,7 +22,7 @@ const Shoe = (props) => {
           let { color, shoe_type, manufacturer } = value;
           // console.log(color, shoe_type, manufacturer);
           let dataToFetch = [color, shoe_type, manufacturer];
-          let test = await Promise.all(
+          let [c, t, m] = await Promise.all(
             dataToFetch.map(async (url) => {
               const r = await fetch(url);
               const d = await r.json();
@@ -35,7 +35,7 @@ const Shoe = (props) => {
 
           let result = {
             ...value,
-            ...{ color: test[0], shoe_type: test[1], manufacturer: test[2] },
+            ...{ color: c, shoe_type: t, manufacturer: m },
           };
           output = [...output, result];
 
