@@ -57,6 +57,7 @@ const Shoe = (props) => {
           <li>Color: {value.color}</li>
           <li>Material: {value.material}</li>
           <li>Type:{value.shoe_type}</li>
+          <li>Size:{value.size}</li>
         </ul>
       </Fragment>
     ));
